@@ -10,6 +10,9 @@ resource "aws_instance" "jenkins" {
     aws_security_group.automation_sg.id
   ]
 
+  # Install Jenkins and Docker automatically
+  user_data = file("../scripts/install-jenkins-docker.sh")
+
   tags = {
     Name = "Jenkins-Server"
   }
