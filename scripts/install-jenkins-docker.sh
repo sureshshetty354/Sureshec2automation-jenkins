@@ -3,8 +3,8 @@
 # Update server
 yum update -y
 
-# Install Java (required for Jenkins)
-yum install java-17-amazon-corretto -y
+# Install Java 21 (required for Jenkins)
+yum install java-21-amazon-corretto -y
 
 # Install Git
 yum install git -y
