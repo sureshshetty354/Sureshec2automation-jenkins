@@ -1,19 +1,2 @@
-# Main Terraform Configuration
-
-terraform {
-  required_version = ">= 1.5.0"
-
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
-  }
-}
-
-
-# AWS Provider Configuration
-
-provider "aws" {
-  region = var.aws_region
-}
+# Main Terraform configuration file
+# Resources are created in separate .tf files
