@@ -10,7 +10,11 @@ resource "aws_instance" "jenkins" {
     aws_security_group.automation_sg.id
   ]
 
-  # Install Jenkins and Docker automatically
+  root_block_device {
+    volume_size = 50
+    volume_type = "gp3"
+  }
+
   user_data = file("../scripts/install-jenkins-docker.sh")
 
   tags = {
