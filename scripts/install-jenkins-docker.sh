@@ -9,11 +9,20 @@ yum install java-21-amazon-corretto -y
 # Install Git
 yum install git -y
 
+# Install Maven
+yum install maven -y
+
 # Install Docker
 yum install docker -y
 
 systemctl start docker
 systemctl enable docker
+
+# Install Apache HTTP Server
+yum install httpd -y
+
+systemctl start httpd
+systemctl enable httpd
 
 # Jenkins Installation
 wget -O /etc/yum.repos.d/jenkins.repo \
@@ -31,4 +40,12 @@ usermod -aG docker jenkins
 
 systemctl restart jenkins
 
-echo "Jenkins and Docker installation completed"
+echo "Jenkins, Docker, Maven, Git and Apache installation completed"
+
+# Verify installations
+java -version
+git --version
+mvn -version
+docker --version
+httpd -v
+jenkins --version
