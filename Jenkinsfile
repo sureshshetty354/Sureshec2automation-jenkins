@@ -9,21 +9,31 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Build Application') {
             steps {
-                echo 'Build started'
+                sh '''
+                cd app
+                mvn clean package
+                '''
             }
         }
 
         stage('Docker Build') {
             steps {
-                echo 'Docker build stage'
+                sh '''
+                cd app
+                docker build -t voting-app .
+                '''
             }
         }
 
-        stage('Deploy') {
+        stage('Deploy Application') {
             steps {
-                echo 'Deployment completed'
+                sh '''
+                docker stop voting-app || true
+                docker rm voting-app || true
+                docker run -d -p 8080:8080 --name voting-app voting-app
+                '''
             }
         }
     }
